@@ -52,3 +52,14 @@ resource "aws_route_table" "my_route_table" {
   }
 }
 
+# let's create the route resource
+# this is an entry on the route table
+resource "aws_route" "my_route" {
+  # we need to give the route table id
+  route_table_id = aws_route_table.my_route_table.id
+  # all ip addresses should head for this gateway
+  destination_cidr_block = "0.0.0.0/0"
+  # need to pass in the internet gateway id
+  gateway_id = aws_internet_gateway.my_internet_gateway.id
+}
+
