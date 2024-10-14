@@ -41,3 +41,14 @@ resource "aws_internet_gateway" "my_internet_gateway" {
   }
 }
 
+# now we need to create a route table to route traffic from subnet to internet gateway
+# we can define the routes inline or we can use a seperate route resource
+resource "aws_route_table" "my_route_table" {
+  # adding the vpc id
+  vpc_id = aws_vpc.my_vpc.id
+  # adding some tags
+  tags = {
+    Name = "dev-route-table"
+  }
+}
+
