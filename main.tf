@@ -63,3 +63,11 @@ resource "aws_route" "my_route" {
   gateway_id = aws_internet_gateway.my_internet_gateway.id
 }
 
+# we need to bridge the gap between the subnet and the route table
+# route_table_association create an association between a route table and a subnet, internet gateway, or a virtual private gateway.
+resource "aws_route_table_association" "my_route_table_association" {
+  # we need to give the subnet id
+  subnet_id = aws_subnet.my_public_subnet.id
+  # we need to give the route table id
+  route_table_id = aws_route_table.my_route_table.id
+}
