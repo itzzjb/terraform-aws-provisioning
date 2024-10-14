@@ -2,16 +2,16 @@
 
 # creating a vpc
 resource "aws_vpc" "my_vpc" {
-    # configuring the cidr block of the vpc
-    cidr_block = "10.0.0.0/16"
-    # doing some configurations
-    enable_dns_hostnames = true # ensures that instances with public IP addresses get corresponding public DNS names
-    enable_dns_support = true # ensures that instances can resolve domain names to IP addresses
-    # adding tags to identify and filter out the vpc
-    tags = {
-        # by adding the Name tag, it will show the value in the UI of the aws console for the VPC
-        Name = "dev"
-    }
+  # configuring the cidr block of the vpc
+  cidr_block = "10.0.0.0/16"
+  # doing some configurations
+  enable_dns_hostnames = true # ensures that instances with public IP addresses get corresponding public DNS names
+  enable_dns_support   = true # ensures that instances can resolve domain names to IP addresses
+  # adding tags to identify and filter out the vpc
+  tags = {
+    # by adding the Name tag, it will show the value in the UI of the aws console for the VPC
+    Name = "dev"
+  }
 }
 
 # creating a subnet (public)
@@ -30,3 +30,14 @@ resource "aws_subnet" "my_public_subnet" {
     Name = "dev-public"
   }
 }
+
+# internet gateway is added to a specific vpc
+resource "aws_internet_gateway" "my_internet_gateway" {
+  # we need to add the vpc id
+  vpc_id = aws_vpc.my_vpc.id
+  # adding some tags
+  tags = {
+    Name = "dev-igw"
+  }
+}
+

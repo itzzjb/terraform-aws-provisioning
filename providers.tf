@@ -2,7 +2,7 @@ terraform {
   # here we specify the data required by terraform to install the plugins for the providers
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
     }
   }
 }
@@ -15,5 +15,5 @@ provider "aws" {
   # adding the name of the user that we setup in the credentials file
   profile = "default"
   # region is mandatory
-  region =  "us-east-1"
+  region = "us-east-1"
 }
