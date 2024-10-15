@@ -26,3 +26,4 @@ terraform destroy -auto-approve
 # situations where only using terraform apply command won't show change (like when we add provisioners)
 terraform apply -replace aws_instance.my_instance
 ```
+```sh
