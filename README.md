@@ -21,3 +21,8 @@ terraform state list
 terraform apply -auto-approve
 terraform destroy -auto-approve
 ```
+```sh
+# to replace a resource that is already applied 
+# situations where only using terraform apply command won't show change (like when we add provisioners)
+terraform apply -replace aws_instance.my_instance
+```
