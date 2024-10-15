@@ -126,10 +126,6 @@ resource "aws_instance" "my_instance" {
   # we can reference to the id of the ami that we got from the data source
   # not like when referencing to resources, in data sources we need to use the prefix data. 
   ami = data.aws_ami.my_ami.id
-  # we can add some tags
-  tags = {
-    Name = "dev-node"
-  }
   # now we need to provide the key pair
   key_name = aws_key_pair.my_key_pair.id
   # now we need to provide the security group
@@ -137,4 +133,12 @@ resource "aws_instance" "my_instance" {
   vpc_security_group_ids = [aws_security_group.my_security_group.id]
   # now we need to give the subnet id
   subnet_id = aws_subnet.my_public_subnet.id
+  # we can add userdata to bootstrap the instance
+  # again we can use the file funtion here
+  # relative path is enogh here
+  user_data = file("userdata.tpl")
+  # we can add some tags
+  tags = {
+    Name = "dev-node"
+  }
 }
