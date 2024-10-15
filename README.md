@@ -27,3 +27,12 @@ terraform destroy -auto-approve
 terraform apply -replace aws_instance.my_instance
 ```
 ```sh
+# can be used to play with terraform env (like finding values of variables)
+terraform console
+```
+```sh
+# to override any input variable for sure
+terraform apply -var="vpc_cidr_block=10.0.0.0/16"
+# to use another separate .tfvars file instead of terraform.tfvars
+terraform apply -var-file"new.tfvars"
+```
