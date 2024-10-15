@@ -1,9 +1,9 @@
 # creating all the resources here
 
 # creating a vpc
+# have used var. to reference the variables in the variables.tf file
 resource "aws_vpc" "my_vpc" {
   # configuring the cidr block of the vpc
-  # have used var. to reference the variables in the variables.tf file
   cidr_block = var.vpc_cidr_block
   # doing some configurations
   enable_dns_hostnames = var.enable_dns_hostnames # ensures that instances with public IP addresses get corresponding public DNS names
