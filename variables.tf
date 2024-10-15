@@ -1,6 +1,7 @@
 # all the variables should be defined here
-# but for now, we will only define the variables of the vpc here
 # default value will be provided in terraform.tfvars file
+
+# vpc
 variable "vpc_cidr_block" {
   type = string
   description = "The CIDR block for the VPC"
@@ -14,3 +15,4 @@ variable "enable_dns_hostnames" {
   description = "A boolean flag to enable/disable DNS hostnames in the VPC"
 }
 
+# to be continued ...
