@@ -72,7 +72,7 @@ resource "aws_route_table_association" "my_route_table_association" {
   route_table_id = aws_route_table.my_route_table.id
 }
 
-# we need to create a security group
+# we need to create a security group that we will use for the ec2
 resource "aws_security_group" "my_security_group" {
   # security group has a name attribute. So, we do not need to tag it. 
   name = "dev-security-group"
@@ -109,4 +109,3 @@ resource "aws_security_group" "my_security_group" {
   }
 
 }
-
