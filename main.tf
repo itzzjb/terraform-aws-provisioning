@@ -118,3 +118,23 @@ resource "aws_key_pair" "my_key_pair" {
   # instead of hardcoding the public key we can use the file method to use the .pub file from the local system that contains the public key
   public_key = file("~/.ssh/terraformkey.pub")
 }
+
+# Now we can create this ec2 instance 
+resource "aws_instance" "my_instance" {
+  # we need to provide the instance type
+  instance_type = "t2.micro"
+  # we can reference to the id of the ami that we got from the data source
+  # not like when referencing to resources, in data sources we need to use the prefix data. 
+  ami = data.aws_ami.my_ami.id
+  # we can add some tags
+  tags = {
+    Name = "dev-node"
+  }
+  # now we need to provide the key pair
+  key_name = aws_key_pair.my_key_pair.id
+  # now we need to provide the security group
+  # we can list down multiple security groups here
+  vpc_security_group_ids = [aws_security_group.my_security_group.id]
+  # now we need to give the subnet id
+  subnet_id = aws_subnet.my_public_subnet.id
+}
