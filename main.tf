@@ -91,8 +91,9 @@ resource "aws_security_group" "my_security_group" {
     from_port = 0
     to_port   = 0
     # then we need to specify the protocol
-    protocol    = "-1"                # here we use -1 to specify all protocols
-    cidr_blocks = ["112.134.129.252"] # we only need to list ip addresses that we are going to access through here (like personal ip address)
+    protocol    = "-1"                   # here we use -1 to specify all protocols
+    cidr_blocks = ["112.134.129.252/32"] # we only need to list ip addresses that we are going to access through here (like personal ip address)
+    # we need to add /32 as the subnet must which will specify a single ip
     # here we have allowed our ipaddress to use any port and protocol to access throught the security group
   }
 
