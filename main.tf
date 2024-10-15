@@ -74,15 +74,15 @@ resource "aws_route_table_association" "my_route_table_association" {
 
 # we need to create a security group
 resource "aws_security_group" "my_security_group" {
- # security group has a name attribute. So, we do not need to tag it. 
- name = "dev-security-group"
- # then we can provide a description
- description = "dev security group"
- # then we need to provide the vpc id
- vpc_id = aws_vpc.my_vpc.id
- # next we need to provide ingress and egress
- # they are defined in seperate blocks inside this resource block
- # or we can use seperate resource blocks to do so
+  # security group has a name attribute. So, we do not need to tag it. 
+  name = "dev-security-group"
+  # then we can provide a description
+  description = "dev security group"
+  # then we need to provide the vpc id
+  vpc_id = aws_vpc.my_vpc.id
+  # next we need to provide ingress and egress
+  # they are defined in seperate blocks inside this resource block
+  # or we can use seperate resource blocks to do so
 }
 
 # ingress resource block
@@ -92,13 +92,21 @@ resource "aws_security_group_ingress_rule" "my_ingress_rule" {
   security_group_id = aws_security_group.my_security_group.id
   # then we need to specify the port range
   from_port = 0
-  to_port = 0
-  protocol = "-1" # here we use -1 to specify all protocols
-  cidr_ipv4 = ["0.0.0.0/0"] # we only need to list ip addresses that we are going to access through here (like personal ip address)
-  # here we have allowed all the ip addresses to use any port and protocol to access throught the security group
+  to_port   = 0
+  # then we need to specify the protocol
+  protocol  = "-1"                # here we use -1 to specify all protocols
+  cidr_ipv4 = ["112.134.129.252"] # we only need to list ip addresses that we are going to access through here (like personal ip address)
+  # here we have allowed our ipaddress to use any port and protocol to access throught the security group
 }
 
 # egress resource block
 resource "aws_security_group_egress_rule" "my_egress_rule" {
-  
+  # we need to add the security group id here
+  security_group_id = aws_security_group.my_security_group.id
+  # then we need to specify the port range
+  from_port = 0
+  to_port   = 0
+  # then we need to specify the protocol
+  protocol  = "-1"
+  cidr_ipv4 = ["0.0.0.0/0"] # here we are going to allow all the ipaddresses 
 }
