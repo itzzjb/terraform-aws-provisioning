@@ -36,3 +36,7 @@ terraform apply -var="vpc_cidr_block=10.0.0.0/16"
 # to use another separate .tfvars file instead of terraform.tfvars
 terraform apply -var-file"new.tfvars"
 ```
+```sh
+# used to get outputs that we have setup in outputs.tf file
+terraform output
+```
