@@ -7,7 +7,7 @@ resource "aws_vpc" "my_vpc" {
   cidr_block = var.vpc_cidr_block
   # doing some configurations
   enable_dns_hostnames = var.enable_dns_hostnames # ensures that instances with public IP addresses get corresponding public DNS names
-  enable_dns_support   = var.enable_dns_support # ensures that instances can resolve domain names to IP addresses
+  enable_dns_support   = var.enable_dns_support   # ensures that instances can resolve domain names to IP addresses
   # adding tags to identify and filter out the vpc
   tags = {
     # by adding the Name tag, it will show the value in the UI of the aws console for the VPC

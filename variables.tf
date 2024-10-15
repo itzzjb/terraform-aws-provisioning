@@ -3,15 +3,15 @@
 
 # vpc
 variable "vpc_cidr_block" {
-  type = string
+  type        = string
   description = "The CIDR block for the VPC"
 }
 variable "enable_dns_support" {
-  type = bool
+  type        = bool
   description = "A boolean flag to enable/disable DNS support in the VPC"
 }
 variable "enable_dns_hostnames" {
-  type = bool
+  type        = bool
   description = "A boolean flag to enable/disable DNS hostnames in the VPC"
 }
 
