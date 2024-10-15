@@ -109,3 +109,12 @@ resource "aws_security_group" "my_security_group" {
   }
 
 }
+
+# now we are going to create the key-value pair that we are going to use in the instance
+resource "aws_key_pair" "my_key_pair" {
+  # we can pass the name here. no need of tags
+  key_name = "terraformkey"
+  # we have used ssh-key gen command and created a public key and a private key in the ~/.ssh directory
+  # instead of hardcoding the public key we can use the file method to use the .pub file from the local system that contains the public key
+  public_key = file("~/.ssh/terraformkey.pub")
+}
